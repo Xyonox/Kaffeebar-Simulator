@@ -1,36 +1,39 @@
 package de.xyonox;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Map<String, Double> CoffeeTyp = new HashMap<>();
         CoffeeTyp.put("Espresso", 2.50);
         CoffeeTyp.put("Latte", 4.50);
         CoffeeTyp.put("Cappuccino", 5.00);
 
         double money = 7.00;
+        String kaffeeliste =
+                "Kaffeeliste \n" +
+                        "Espresso 2,50€\n" +
+                        "Latte 4,50€\n" +
+                        "Cappuccino 5,00€\n";
 
         Scanner input = new Scanner(System.in);
         System.out.println("Kontostand: " + money + "€");
         System.out.println("Willkommen in unserer Kaffeebar!");
-        System.out.println("Welchen Kaffee wollen Sie haben?");
         while (true) {
-            System.out.println(
-                    "Kaffeeliste \n" +
-                            "Espresso 2,50€\n" +
-                            "Latte 4,50€\n" +
-                            "Cappuccino 5,00€\n"
-                    );
+            System.out.println("Wie heißen Sie?");
+            String name = input.nextLine();
+
 
             System.out.println("Welchen Kaffee wollen Sie haben?");
+            System.out.println(kaffeeliste);
+
+            //TODO: abfrage ob es ein kaffee überhaupt ist
             String kaffee = input.nextLine();
-            if(!CoffeeTyp.containsKey(kaffee)){
-                System.out.println("diesen kaffee gibt es nicht hier nochmal die Kaffeeliste:");
-                continue;
-            }
 
 
             System.out.println("In welcher Anzahl?");
@@ -50,8 +53,6 @@ public class Main {
             } else {
                 System.out.println("Sie haben nicht genug Geld.");
             }
-
-
             break;
         }
     }
